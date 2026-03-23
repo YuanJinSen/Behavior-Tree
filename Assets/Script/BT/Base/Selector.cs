@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using LateUpdate;
 
 namespace BT
 {
@@ -9,6 +10,15 @@ namespace BT
         public int curIdx = 0;
         
         public Selector(params BTNode[] nodes) { children.AddRange(nodes); }
+
+        public override void Init(Avatar val)
+        {
+            base.Init(val);
+            for (int i = 0; i < children.Count; i++)
+            {
+                children[i].Init(val);
+            }
+        }
 
         public override BTStatus Tick()
         {

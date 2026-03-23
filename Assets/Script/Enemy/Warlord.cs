@@ -5,7 +5,7 @@ using BT;
 
 namespace LateUpdate
 {
-    public class Warlord : MonoBehaviour
+    public class Warlord : Avatar
     {
         private BTNode behaviorTree;
         void Start()

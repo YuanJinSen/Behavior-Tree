@@ -1,4 +1,6 @@
-﻿namespace BT
+﻿using LateUpdate;
+
+namespace BT
 {
     public enum BTStatus
     {
@@ -10,6 +12,13 @@
     public abstract class BTNode
     {
         public BTStatus State { get; protected set; } = BTStatus.Failure;
+        protected Avatar avatar;
+
+        public virtual void Init(Avatar val)
+        {
+            avatar = val;
+        }
+        
         public abstract BTStatus Tick();
     
         // 节点开始执行
