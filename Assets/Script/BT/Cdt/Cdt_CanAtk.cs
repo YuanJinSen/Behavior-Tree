@@ -1,10 +1,13 @@
-﻿namespace BT
+﻿using UnityEngine;
+
+namespace BT
 {
     public class Cdt_CanAtk : Condition
     {
         protected override bool CheckCondition()
         {
-            throw new System.NotImplementedException();
+            float needTime = avatar.GetLastAtkTime() + avatar.GetAtkInterval();
+            return needTime <= Time.time;
         }
     }
 }

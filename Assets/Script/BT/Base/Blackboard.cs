@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BT
 {
     // 行为树的共享数据存储中心
-    public class Blackboard : Singleton<Blackboard>
+    public class Blackboard
     {
         private Dictionary<string, object> data = new Dictionary<string, object>();
     

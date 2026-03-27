@@ -4,17 +4,17 @@
     {
         protected override void OnEnter()
         {
-            throw new System.NotImplementedException();
+            avatar.PlayAnim("Alchemy_Start");
         }
 
         protected override BTStatus OnUpdate()
         {
-            throw new System.NotImplementedException();
+            return BTStatus.Running;
         }
 
         protected override void OnExit()
         {
-            throw new System.NotImplementedException();
+            avatar.PlayAnim("Alchemy_End");
         }
     }
 }

@@ -13,10 +13,12 @@ namespace BT
     {
         public BTStatus State { get; protected set; } = BTStatus.Failure;
         protected Avatar avatar;
+        protected Blackboard blackboard;
 
         public virtual void Init(Avatar val)
         {
             avatar = val;
+            blackboard = val.blackboard;
         }
         
         public abstract BTStatus Tick();

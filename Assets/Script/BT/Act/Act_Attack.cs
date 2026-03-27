@@ -1,20 +1,24 @@
-﻿namespace BT
+﻿using UnityEngine;
+
+namespace BT
 {
     public class Act_Attack : Action
     {
         protected override void OnEnter()
         {
-            throw new System.NotImplementedException();
+            avatar.PlayAnim("SkillA");
+            avatar.SetLastAtkTime();
         }
 
         protected override BTStatus OnUpdate()
         {
-            throw new System.NotImplementedException();
+            float endTime = avatar.GetLastAtkTime() + avatar.GetAtkInterval();
+            return endTime <= Time.time ? BTStatus.Running : BTStatus.Success;
         }
 
         protected override void OnExit()
         {
-            throw new System.NotImplementedException();
+            avatar.PlayAnim("Stand");
         }
     }
 }
