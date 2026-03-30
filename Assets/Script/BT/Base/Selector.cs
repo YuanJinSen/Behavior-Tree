@@ -8,6 +8,7 @@ namespace BT
     {
         public List<BTNode> children = new List<BTNode>();
         public int curIdx = 0;
+        public int curRunning = -1;
         
         public Selector(params BTNode[] nodes) { children.AddRange(nodes); }
 
@@ -22,12 +23,14 @@ namespace BT
 
         public override BTStatus Tick()
         {
+            AbortOther();
             for (; curIdx < children.Count; curIdx++)
             {
                 BTStatus status = children[curIdx].Tick();
                 if (status != BTStatus.Failure)
                 {
                     State = status;
+                    curRunning = curIdx;
                     if (status == BTStatus.Success) curIdx = 0;
                     return State;
                 }
@@ -40,8 +43,25 @@ namespace BT
         public override void Abort()
         {
             base.Abort();
-            if (curIdx < children.Count) children[curIdx].Abort();
+            for (int i = 0; i < children.Count; i++)
+            {
+                children[i].Abort();
+            }
             curIdx = 0;
+        }
+
+        private void AbortOther()
+        {
+            if (curRunning < 0)
+            {
+                return;
+            }
+            for (int i = 0; i < children.Count; i++)
+            {
+                if (i != curRunning) children[i].Abort();
+            }
+
+            curRunning = -1;
         }
     }
 }

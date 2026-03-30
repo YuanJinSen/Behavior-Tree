@@ -40,7 +40,10 @@ namespace BT
         public override void Abort()
         {
             base.Abort();
-            if (curIdx < children.Count) children[curIdx].Abort();
+            for (int i = 0; i < children.Count; i++)
+            {
+                children[i].Abort();
+            }
             curIdx = 0;
         }
     }

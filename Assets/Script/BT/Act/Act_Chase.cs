@@ -21,7 +21,7 @@ namespace BT
 
         protected override void OnExit()
         {
-            avatar.PlayAnim("Stand");
+            //avatar.PlayAnim("Stand");
         }
     }
 }

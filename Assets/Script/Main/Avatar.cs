@@ -1,6 +1,6 @@
-﻿using System;
-using BT;
+﻿using BT;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace LateUpdate
 {
@@ -9,20 +9,27 @@ namespace LateUpdate
         public Animator animator;
         public Blackboard blackboard;
         private BTNode btNode;
+        private NavMeshAgent nav;
 
         private float lastAtkTime;
         private float atkInterval;
-        private void Awake()
+        protected void Awake()
         {
             animator = GetComponent<Animator>();
             blackboard = new Blackboard();
-            GetBT(gameObject.name);
+            btNode = GetBT(gameObject.name);
+            nav = gameObject.AddComponent<NavMeshAgent>();
         }
 
-        private void Start()
+        protected void Start()
         {
             lastAtkTime = 0;
             atkInterval = 1.2f;
+        }
+
+        protected void Update()
+        {
+            btNode.Tick();
         }
 
         protected BTNode GetBT(string key)
@@ -47,12 +54,14 @@ namespace LateUpdate
 
         public void PlayAnim(string key)
         {
+            print(key);
             animator.Play(key);
         }
 
         public void MoveTo(Vector3 point)
         {
-            
+            Debug.Log("moving");
+            //nav.Move(point);
         }
     }
 }

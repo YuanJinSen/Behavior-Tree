@@ -7,15 +7,19 @@ namespace LateUpdate
 {
     public class Warlord : Avatar
     {
-        private BTNode behaviorTree;
+        void Awake()
+        {
+            base.Awake();
+        }
+        
         void Start()
         {
-            
+            base.Start();
         }
 
         void Update()
         {
-            
+            base.Update();
         }
     }
 }

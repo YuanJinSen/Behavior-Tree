@@ -14,7 +14,7 @@
 
         protected override void OnExit()
         {
-            avatar.PlayAnim("Alchemy_End");
+            //avatar.PlayAnim("Alchemy_End");
         }
     }
 }

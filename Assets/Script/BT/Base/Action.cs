@@ -1,4 +1,6 @@
-﻿namespace BT
+﻿using UnityEngine;
+
+namespace BT
 {
     public abstract class Action : BTNode
     {
@@ -19,7 +21,7 @@
                 OnStop();
                 isRunning = false;
             }
-            return State;
+            return State == BTStatus.Failure ? BTStatus.Failure : BTStatus.Success;
         }
         
         public override void Abort()
@@ -28,8 +30,8 @@
             {
                 OnStop();
                 isRunning = false;
+                base.Abort();
             }
-            base.Abort();
         }
         
         protected abstract void OnEnter();
